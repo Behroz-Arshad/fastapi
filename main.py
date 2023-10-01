@@ -40,6 +40,13 @@ templates = Jinja2Templates(directory='templates')
 async def read_item(request:Request):
     return templates.TemplateResponse("index.html", {"request":request  })
 
+@app.post("/", response_class=HTMLResponse)
+async def read_item(request:Request):
+    form = await request.form()
+    title = form.get("title")
+    desc = form.get("desc")
+
+    return templates.TemplateResponse("index.html", {"request":request  })
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
